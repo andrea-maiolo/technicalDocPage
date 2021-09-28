@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+    <main id="main-doc">
+        <nav id="navbar">
+            <header>
+                <p id="mainTitle">Learn CSS</p>
+            </header>
+            <ul id="topics">
+                <li>
+                    <a class="nav-link" href="#General_Info">General Info</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#Syntax">Syntax</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#Usage">Usage</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#Precedence_or_Cascade">Precedence or Cascade</a>
+                </li>
+                <li>
+                    <a class="nav-link" href='#Media_Queries'>Media Queries</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#Compatibility">Compatibility</a>
+                </li>
+        </nav>
+        <div id="sectionContainer">
+            <section class="main-section" id="General_Info">
+                <header>
+                    <h2 class="sectionTitle">General Info</h2>
+                </header>
+                <p>
+                    Web pages are built with HTML, which specifies the content of a page. CSS (Cascading Style Sheets) is a separate language which specifies a page’s <strong>appearance</strong>.
+                </p>
+                <p>
+                    CSS code is made of static <em>rules</em>. Each rule takes one or more <em>selectors</em> and gives specific <em>values</em> to a number of visual <em>properties</em>.
+                    Those properties are then applied to the page elements indicated by the selectors.
+                </p>
+                <p>
+                    This guide has been written with CSS 2 in mind, which is extended by the new features of CSS 3.
+                </p>
+                <p>
+                    <strong>NOTE</strong>: Because CSS produces visual results, in order to learn it, you need to try everything in a CSS playground like <a href="www.dabblet.com">dabblet</a>.
+                    The main focus of this article is on the syntax and some general tips.
+                </p>
+                </p>
+            </section>
+            <section class="main-section" id="Syntax">
+                <header>
+                    <h2 class="sectionTitle">Syntax</h2>
+                </header>
+                <div class="codeContainer">
+                    <code class="code">
+                        <span class="s">/* comments appear inside slash-asterisk, just like this line!</span>
+                        <span class="s">there are no "one-line comments"; this is the only comment style */</span>
+
+                        <span class="s">/* ####################</span>
+                        <span class="s">## SELECTORS</span>
+                        <span class="s">#################### */</span>
+
+                        <span class="s">/* the selector is used to target an element on a page. */</span>
+                        <span class="pink">selector</span>{ property: value;<span class="s">/* more properties...*/</span><span>}</span>
+
+                        <span class="s">/*</span>
+                        <span class="s">Here is an example element:</span>
+
+                        <span class="s">&lt;div class='class1 class2' id='anID' attr='value' otherAttr='en-us foo bar' /&gt;</span>
+                        <span class="s">*/</span>
+
+                        <span class="s">/* You can target it using one of its CSS classes */</span>
+                        <spanc class="green">.class1</spanc><span>{ }</span>
+
+                        <span class="s">/* or both classes! */</span>
+                        <span>.</span><span class="green">class1</span><span>.</span><span class="green">class2</span><span>{ }</span>
+
+                        <span class="s">/* or its name */</span>
+                        <span class="pink">div</span><span>{ }</span>
+
+                        <span class="s">/* or its id */</span>
+                        <span>#anID { }</span>
+
+                        <span class="s">/* or using the fact that it has an attribute! */</span>
+                        <span class="pink">[attr]</span><span>{</span><span class="blue">font-size</span><span>:</span><span class="blue">smaller</span><span>; }</span>
+
+                        <span class="s">/* or that the attribute has a specific value */</span>
+                        <span class="pink">[attr=</span><span class="yellow">'value'</span><span class="pink">]</span><span>{</span><span class="blue">font-size</span><span>:</span><span class="blue">smaller</span><span>; }</span>
+
+                        <span class="s">/* starts with a value (CSS 3) */</span>
+                        <span class="pink">[attr^=</span><span class="yellow">'val'</span><span class="pink">]</span><span>{</span><span class="blue">font-size</span><span>:</span><span class="blue">smaller</span><span>; }</span>
+
+                        <span class="s">/* or ends with a value (CSS 3) */</span>
+                        <span class="pink">attr1=</span><span class="yellow">"ue"</span><span class="pink">]</span><span>{</span><span class="blue">font-size</span><span>:</span><span class="blue">smaller</span><span>; }</span>
+
+                        <span class="s">/* or contains a value in a space-separated list */</span>
+                        <span class="pink">[otherAttr~=</span><span class="yellow">'foo'</span><span class="pink">]</span><span>{ }</span>
+                        <span class="pink">[otherAttr~=</span><span class="yellow">'bar'</span><span class="pink">]</span> <span>{ }</span>
+
+                        <span class="s">/* or contains a value in a dash-separated list, e.g., "-" (U+002D) */</span>
+                        <span class="pink">[otherAttr|=</span><span class="yellow">'en'</span><span class="pink">]</span><span>{</span><span class="blue">font-size</span><span>:</span><span class="blue">smaller</span><span>; }</span>
+
+                        <span class="s">/* You can combine different selectors to create a more focused selector. Don't</span>
+                        <span class="s">put spaces between them. */</span>
+                        <span class="pink">div</span><span>.</span><span class="green">some-class</span><span class="pink">[attr$=</span><span class="yellow">'ue'</span><span class="pink">]</span><span>{ }</span>
+
+                        <span class="s">/* You can select an element which is a child of another element */</span>
+                        <span class="pink">div</span><span>.</span><span class="green">some-parent</span> <span class="pink">> </span><span>.</span><span class="green">class-name</span><span>{ }</span>
+
+                        <span class="s">/* or a descendant of another element. Children are the direct descendants of</span>
+                        <span class="s">their parent element, only one level down the tree. Descendants can be any</span>
+                        <span class="s">level down the tree. */</span>
+                        <span class="pink">div</span><span>.</span><span class="green">some-parent</span><span>.</span><span class="green">class-name</span><span>{ }</span>
+
+                        <span class="s">/* Warning: the same selector without a space has another meaning.</span>
+                        <span class="s">Can you guess what? */</span>
+                        <span class="pink">div</span><span>.</span><span class="green">some-parent</span><span>.</span><span class="green">class-name</span><span>{ }</span>
+
+                        <span class="s">/* You may also select an element based on its adjacent sibling */</span>
+                        <span>.</span><span class="green">i-am-just-before</span><span class="pink">+</span><span>.</span><span class="green">this-element</span><span>{ }</span>
+
+                        <span class="s">/* or any sibling preceding it */</span>
+                        <span>.</span><span class="green">i-am-any-element-before</span><span class="pink">~</span><span>.</span><span class="green">this-element</span><span>{ }</span>
+
+                        <span class="s">/* There are some selectors called pseudo classes that can be used to select an</span>
+                        <span class="s">element only when it is in a particular state */</span>
+
+                        <span class="s">/* for example, when the cursor hovers over an element */</span>
+                        <span class="pink">selector</span><span>:</span><span class="green">hover</span><span>{ }</span>
+
+                        <span class="s">/* or a link has been visited */</span>
+                        <span class="pink">selector</span><span>:</span><span class="green">visited</span><span>{ }</span>
+
+                        <span class="s">/* or hasn't been visited */</span>
+                        <span class="pink">selector</span><span>:</span><span class="green">link</span><span>{ }</span>
+
+                        <span class="s">/* or an element is in focus */</span>
+                        <span class="pink">selector</span><span>:</span><span class="green">focus</span><span>{ }</span>
+
+                        <span class="s">/* any element that is the first child of its parent */</span>
+                        <span class="pink">selector</span><span>:</span><span class="green">first-child</span><span>{ }</span>
+
+                        <span class="s">/* any element that is the last child of its parent */</span>
+                        <span class="pink">selector</span><span>:</span><span class="green">last-child</span><span>{ }</span>
+
+                        <span class="s">/* Just like pseudo classes, pseudo elements allow you to style certain parts of</span>
+                        <span class="s">a document */</span>
+
+                        <span class="s">/* matches a virtual first child of the selected element */</span>
+                        <span class="pink">selector</span><span>::</span><span class="green">before</span><span>{ }</span>
+
+                        <span class="s">/* matches a virtual last child of the selected element */</span>
+                        <span class="pink">selector</span><span>::</span><span class="green">after</span><span>{ }</span>
+
+                        <span class="s">/* At appropriate places, an asterisk may be used as a wildcard to select every</span>
+                        <span class="s">element */</span>
+                        <span class="pink">*</span>{ }<span class="s">/* all elements */</span>
+                        <span class="s">.</span><span class="green">parent</span><span class="pink">*</span>{ }<span class="s">/* all descendants */</span>
+                        <span class="s">.</span><span class="green">parent</span><span class="pink">> *</span>{ }<span class="s">/* all children */</span>
+
+                        <span class="s">/* Group any number of selectors to define styles that affect all selectors</span>
+                        <span class="s">in the group */</span>
+                        <span class="pink">selector1, selector2</span><span class="s"> { }</span>
+
+                        <span class="s">/* ####################</span>
+                        <span class="s">## PROPERTIES</span>
+                        <span class="s">#################### */</span>
+
+                        <span class="pink">selector</span><span>{</span>
+
+                        <span class="s">/* Units of length can be absolute or relative. */</span>
+
+                        <span class="s">/* Relative units */</span>
+                        <span class="blue">width</span><span>:</span><span class="numbers">50%</span><span>;</span><span class="s"> /* percentage of parent element width */</span>
+                        <span class="blue">font-size</span><span>:</span><span class="numbers">2em</span><span>;</span><span class="s"> /* multiples of element's original font-size */</span>
+                        <span class="blue">font-size</span><span>:</span><span class="numbers">2rem</span><span>;</span><span class="s"> /* or the root element's font-size */</span>
+                        <span class="blue">font-size</span><span>:</span><span class="numbers">2vw</span><span>;</span><span class="s"> /* multiples of 1% of the viewport's width (CSS 3) */</span>
+                        <span class="blue">font-size</span><span>:</span><span class="numbers">2vh</span><span>;</span><span class="s"> /* or its height */</span>
+                        <span class="blue">font-size</span><span>:</span><span class="numbers">2vmin</span><span>;</span><span class="s"> /* whichever of a vh or a vw is smaller */</span>
+                        <span class="blue">font-size</span><span>:</span><span class="numbers">2vmax</span><span>;</span><span class="s"> /* or greater */</span>
+
+                        <span class="s">/* Absolute units */</span>
+                        <span class="blue">width</span><span>:</span><span class="numbers">200px</span></span><span>;</span><span class="s"> /* pixels */</span>
+                        <span class="blue">font-size</span><span>:</span><span class="numbers">20pt</span></span><span>;</span><span class="s"> /* points */</span>
+                        <span class="blue">width</span><span">:</span><span class="numbers">5cm</span></span><span>;</span><span class="s"> /* centimeters */</span>
+                        <span class="blue">min-width</span><span>:</span><span class="numbers">50mm</span></span><span>;</span><span class="s">/* millimeters */</span>
+                        <span class="blue">max-width</span><span>:</span><span class="numbers">5in</span></span><span>;</span><span class="s">/* inches */</span>
+
+                        <span class="s">/* Colors */</span>
+                        <span class="blue">color</span>:<span class="numbers">#F6E</span>;<span class="s"> /* short hex format */</span>
+                        <span class="blue">color</span>:<span class="numbers">#FF66EE</span>;<span class="s"> /* long hex format */</span>
+                        <span class="blue">color</span>:<span class="numbers">tomato</span>;<span class="s"> /* a named color */</span>
+                        <span class="blue">color</span>:<span class="numbers">rgb(255, 255, 255)</span>;<span class="s"> /* as rgb values */</span>
+                        <span class="blue">color</span>:<span class="numbers">rbg(10%, 20%, 50%)</span>;<span class="s"> /* as rgb percentages */</span>
+                    </code>
+                </div>
+            </section>
+            <section class="main-section" id="Usage">
+                <header>
+                    <h2 class="sectionTitle">Usage</h2>
+                </header>
+                <p>
+                    Save a CSS stylesheet with the extension .css.
+                </p>
+                <div class="codeContainer">
+                    <code class="code">
+                        <span class="s">&lt;!-- You need to include the css file in your page's &lt;head&gt;. This is the
+                            recommended method. Refer to http://stackoverflow.com/questions/8284365 --&gt;</span>
+
+                        &lt<span class="pink">link</span><span class="green"> rel</span><span class="pink">=</span><span class="yellow">'stylesheet'</span><span class="green"> type</span><span class="pink">=</span><span class="yellow">'text/css'</span><span class="green"> href</span><span class="pink">=</span><span class="yellow">'path/to/style.css'</span>&gt;
+
+                        <span class="s">&lt;!-- You can also include some CSS inline in your markup. --&gt;</span>
+                        &lt;<span class="pink">style</span>&gt;
+                        <span class="pink">a</span> { <span class="blue">color</span>:<span class="blue">purple</span>; }
+                        &lt;<span class="pink">/style</span>&gt;
+
+                        <span class="s">&lt;!-- Or directly set CSS properties on the element. --&gt;</span>
+                        &lt;<span class="pink">div</span>
+                        <span class="green">style</span><span class"pink">=</span><span class="yellow">"border: 1px solid red;"</span> &gt;
+                        &lt;<span class="pink">/div</span>&gt;
+                    </code>
+                </div>
+            </section>
+            <section class="main-section" id="Precedence_or_Cascade">
+                <header>
+                    <h2 class="sectionTitle">Precedence or Cascade</h2>
+                </header>
+                <p>
+                    An element may be targeted by multiple selectors and may have a property set on it in more than once. In these cases, one of the rules takes precedence over others. Rules with a more specific selector take precedence over a less specific one, and a rule occurring later in the stylesheet overwrites a previous one (which also means that if two different linked stylesheets contain rules for an element and if the rules are of the same specificity, then order of linking would take precedence and the sheet linked latest would govern styling) .
+                </p>
+                <p>
+                    This process is called cascading, hence the name Cascading Style Sheets.
+                </p>
+                <p>
+                    Given the following CSS:
+                </p>
+                <div class="codeContainer">
+                    <code class="code">
+                        <span class="s">/* A */</span>
+                        <span class="pink">p</span>.<span class="green">class1</span><span class="pink">[attr=</span><span class="yellow">'value'</span><span class="pink">]</span>
+
+                        <span class="s">/* B */</span>
+                        <span class="pink">p</span>.<span class="green">class1</span> { }
+
+                        <span class="s">/* C */</span>
+                        <span class="pink">p</span>.<span class="green">class2</span> { }
+
+                        <span class="s">/* D */</span>
+                        <span class="pink">p</span> { }
+
+                        <span class="s">/* E */</span>
+                        <span class="pink">p</span> { <span class="s">property: value !important;</span> }
+                    </code>
+                </div>
+                <p>
+                    and the following markup:
+                </p>
+                <div class="codeContainer">
+                    <code class="code">
+                        &lt;<span class="pink">p</span> <span class="green">style</span><span class="pink">=</span><span class="yellow">'/*F*/ property:value;'</span> <span class="green">class</span><span class="pink">=</span><span class="yellow">'class1 class2'</span> <span class="green">attr</span><span class="pink">=</span><span class="yellow">'value'</span>&gt;
+                    </code>
+                </div>
+                <p>
+                    The precedence of style is as follows. Remember, the precedence is for each property, not for the entire block.
+                </p>
+                <ul>
+                    <li>E has the highest precedence because of the keyword !important. It is recommended that you avoid its usage.</li>
+                    <li>F is next, because it is an inline style.</li>
+                    <li>A is next, because it is more "specific" than anything else. It has 3 specifiers: The name of the element p, its class class1, an attribute attr='value'.</li>
+                    <li>C is next, even though it has the same specificity as B. This is because it appears after B.</li>
+                    <li>B is next.</li>
+                    <li>D is the last one.</li>
+            </section>
+            <section class="main-section" id="Media_Queries">
+                <header>
+                    <h2 class="sectionTitle">Media Queries</h2>
+                </header>
+                <p>
+                    CSS Media Queries are a feature in CSS 3 which allows you to specify when certain CSS rules should be applied, such as when printed, or when on a screen with certain dimensions or pixel density. They do not add to the selector's specificity.
+                </p>
+                <div class="codeContainer">
+                    <code class="code">
+                        <span class="s">/* A rule that will be used on all devices */</span>
+                        <span class="pink">h1</span> {
+                            <span class="blue">font-size:</span> <span class="numbers">2em</span>;
+                            <span class="blue">color: white</span>;
+                            <span class="blue">background-color: black</span>;
+                        }
+
+                        <span class="s">/* change the h1 to use less ink on a printer */</span>
+                        @<span class="blue">media</span> <span class="pink">print</span> {
+                            <span class="pink">h1</span> {
+                                <span class="blue">color: black</span>;
+                                <span class="blue">background-color: white</span>;
+                            }
+                        }
+
+                        <span class="s">/* make the font bigger when shown on a screen at least 480px wide */</span>
+                        @<span class="blue">media</span> <span class="pink">screen and (min-width: 480px)</span> {
+                            <span class="pink">h1</span> {
+                                <span class="blue">font-size:</span><span class="numbers"> 3em</span>;
+                                <span class="blue">font-weight: normal</span>;
+                            }
+                        }
+                    </code>
+                </div>
+                <p>
+                    Media queries can include these features: width, height, device-width, device-height, orientation, aspect-ratio, device-aspect-ratio, color, color-index, monochrome, resolution, scan, grid. Most of these features can be prefixed with min- or max-.
+                </p>
+                <p>
+                    The resolution feature is not supported by older devices, instead use device-pixel-ratio.
+                </p>
+                <p>
+                    Many smartphones and tablets will attempt to render the page as if it were on a desktop unless you provide a viewport meta-tag.
+                </p>
+                <div class="codeContainer">
+                    <code class="code">
+                        &lt;<span class="pink">head</span>&gt;
+                            &lt;<span class="pink">meta</span> <span class="green">name</span><span class="pink">=</span><span class="yellow">"viewport"</span> <span class="green">content</span><span class="pink">=</span><span class="yellow">"width=device-width; initial-scale=1.0"</span>&gt;
+                        &lt;/<span class="pink">head</span>&gt;
+                    </code>
+                </div>
+            </section>
+            <section class="main-section" id="Compatibility">
+                <header>
+                    <h2 class="sectionTitle">Compatibility</h2>
+                </header>
+                <p>Most of the features in CSS 2 (and many in CSS 3) are available across all browsers and devices.<br>
+                    But it's always good practice to check before using a new feature.
+                </p>
+                <p>For more info and to learn more about this technology</p>
+                <p>You should check <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics">Mozilla</a>'s documentation</p>
+            </section>
+        </div>
+    </main>
+    </body>
+</html>
